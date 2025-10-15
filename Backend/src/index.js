@@ -23,4 +23,10 @@ app.use("/uploads", express.static("uploads"));
 app.use("/auth", authRoutes);
 app.use("/content", contentRoutes);
 
+
+app.get("/", (req, res) => {
+  res.send("CensorPRO backend is running successfully.");
+});
+
+
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
