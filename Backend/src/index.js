@@ -18,6 +18,11 @@ app.use(cors({
   allowedHeaders: ["Content-Type","Authorization"]
 }));
 
+app.use((req, res, next) => {
+  console.log(`Incoming ${req.method} request from origin: ${req.headers.origin}`);
+  next();
+});
+
 app.use(bodyParser.json());
 app.use(passport.initialize());
 
