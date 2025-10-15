@@ -4,7 +4,7 @@ import censorProLogo from '../assets/CensorProLogo.png'
 
 const AdminDashboard = () => {
   const API_BASE_URL = useMemo(() => (
-    import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
+    import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
   ), []);
 
   const [queue, setQueue] = useState([]);

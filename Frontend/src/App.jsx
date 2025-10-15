@@ -16,7 +16,6 @@ function App() {
         <Route path='register' element={<Register />} />
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='admin' element={<AdminDashboard />} />
-        {/* Support backend redirect using capitalized /Dashboard */}
         <Route path='Dashboard' element={<Navigate to='/dashboard' replace />} />
       </Routes>
     </>

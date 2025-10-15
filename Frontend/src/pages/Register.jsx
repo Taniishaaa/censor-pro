@@ -7,7 +7,7 @@ const Register = () => {
   const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const API_BASE_URL = useMemo(() => (
-    import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
+    import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
   ), []);
   const [formData, setFormData] = useState({
     name: '',

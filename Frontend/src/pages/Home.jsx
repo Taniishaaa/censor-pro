@@ -1,14 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { FaShieldAlt, FaImage, FaCheckCircle } from 'react-icons/fa';
-import censorProLogo from '../assets/CensorProLogo.png'
+import censorProLogo from '../assets/CensorProLogo.png';
 import { Link, useNavigate } from 'react-router-dom';
-
 
 const Home = () => {
   const navigate = useNavigate();
   const [isAuthed, setIsAuthed] = useState(false);
   const API_BASE_URL = useMemo(() => (
-    import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
+    import.meta.env.VITE_BACKEND_URL || 'https://censor-pro.onrender.com'
   ), []);
 
   useEffect(() => {
@@ -33,9 +32,16 @@ const Home = () => {
       navigate('/dashboard');
     }
   };
+
+  const handleLogout = async () => {
+    try { localStorage.removeItem('token'); } catch {}
+    try { await fetch(`${API_BASE_URL}/auth/logout`, { method: 'POST', credentials: 'include' }); } catch {}
+    setIsAuthed(false);
+    navigate('/', { replace: true });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-100 to-blue-200 text-blue-900">
-      
       {/* Header */}
       <header className="bg-white shadow-md py-4 px-6 flex justify-between items-center rounded-b-xl">
         <div className="flex items-center gap-2">
@@ -50,12 +56,7 @@ const Home = () => {
         </nav>
         {isAuthed ? (
           <button
-            onClick={async () => {
-              try { localStorage.removeItem('token'); } catch {}
-              try { await fetch(`${API_BASE_URL}/auth/logout`, { method: 'POST' }); } catch {}
-              setIsAuthed(false);
-              navigate('/', { replace: true });
-            }}
+            onClick={handleLogout}
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer"
           >
             Sign Out
@@ -68,8 +69,6 @@ const Home = () => {
             Sign In
           </Link>
         )}
-
-        
       </header>
 
       {/* Hero Section */}
@@ -118,4 +117,3 @@ const Home = () => {
 };
 
 export default Home;
-

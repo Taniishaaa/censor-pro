@@ -26,7 +26,7 @@ const Dashboard = () => {
   const [recentActivity, setRecentActivity] = useState([]);
 
   const API_BASE_URL = useMemo(() => (
-    import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
+    import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
   ), []);
 
   const [userName, setUserName] = useState('');
@@ -425,6 +425,8 @@ const Dashboard = () => {
     </div>
   );
 
+
+  
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-100 to-blue-200 text-blue-900 font-sans">
       <style>
