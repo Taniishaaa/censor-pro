@@ -12,7 +12,12 @@ dotenv.config();
 const { PORT = 5000, FRONTEND_URL } = process.env;
 
 const app = express();
-app.use(cors({ origin: FRONTEND_URL, credentials: true }));
+app.use(cors({
+  origin: FRONTEND_URL,
+  methods: ["GET","POST","PUT","DELETE"],
+  allowedHeaders: ["Content-Type","Authorization"]
+}));
+
 app.use(bodyParser.json());
 app.use(passport.initialize());
 
